@@ -50,13 +50,6 @@ public class Calculate {
             symbolsLength = priorityCalculations(numbers, symbols, numbersLength, symbolsLength);
         }
         simpleCalculations(numbers, symbols, symbolsLength);
-
-        for(String number: numbers){
-            System.out.println(number);
-        }
-        for(String symbol: symbols){
-            System.out.println(symbol);
-        }
     }
 
     static int priorityCalculations(String[] numbers, String[] symbols, int numbersLength, int symbolsLength){
@@ -105,20 +98,29 @@ public class Calculate {
     }
 
     static void simpleCalculations(String[] numbers, String[] symbols, int symbolsLength){
-        for(int x = 0; x < symbolsLength; x++){
-            switch(symbols[x]){
-                case "+" : numbers[x+1] = String.valueOf(Double.parseDouble(numbers[x]) + Double.parseDouble(numbers[x+1]));
-                    break;
-                case "-" : numbers[x+1] = String.valueOf(Double.parseDouble(numbers[x]) - Double.parseDouble(numbers[x+1]));
-                    break;
-                case "--" : numbers[x+1] = String.valueOf(Double.parseDouble(numbers[x]) + Double.parseDouble(numbers[x+1]));
-                    break;
-                case "+-" : numbers[x+1] = String.valueOf(Double.parseDouble(numbers[x]) - Double.parseDouble(numbers[x+1]));
-                    break;
+        try {
+            for (int x = 0; x < symbolsLength; x++) {
+                switch (symbols[x]) {
+                    case "+":
+                        numbers[x + 1] = String.valueOf( Double.parseDouble( numbers[x] ) + Double.parseDouble( numbers[x + 1] ) );
+                        break;
+                    case "-":
+                        numbers[x + 1] = String.valueOf( Double.parseDouble( numbers[x] ) - Double.parseDouble( numbers[x + 1] ) );
+                        break;
+                    case "--":
+                        numbers[x + 1] = String.valueOf( Double.parseDouble( numbers[x] ) + Double.parseDouble( numbers[x + 1] ) );
+                        break;
+                    case "+-":
+                        numbers[x + 1] = String.valueOf( Double.parseDouble( numbers[x] ) - Double.parseDouble( numbers[x + 1] ) );
+                        break;
+                    default: throw new Exception("No illegal symbol");
+                }
             }
-        };
-        double result = Double.parseDouble(numbers[symbolsLength]);
-        System.out.println(result);
+        StringWriterToFile fileWriter = new StringWriterToFile();
+        fileWriter.writeString(numbers[symbolsLength]);
+        } catch (Exception  ex){
+            System.out.println(ex.getMessage());
+        }
     }
 
 }
