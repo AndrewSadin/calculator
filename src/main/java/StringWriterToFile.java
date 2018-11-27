@@ -1,6 +1,10 @@
 import java.io.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class StringWriterToFile {
+
+    private static final Logger log = LogManager.getRootLogger();
 
     public void writeString(String stringWrite) {
 
@@ -8,10 +12,12 @@ public class StringWriterToFile {
         {
             writer.write(stringWrite);
             writer.flush();
+
+            log.info("Result is write in file");
         }
         catch(IOException ex){
 
-            System.out.println(ex.getMessage());
+            log.error(ex.getMessage());
         }
     }
 }

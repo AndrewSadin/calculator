@@ -1,6 +1,10 @@
 import java.io.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class StringReaderFromFile {
+
+    private static final Logger log = LogManager.getRootLogger();
 
     String getString(){
         String stringFromFile = "";
@@ -12,10 +16,11 @@ public class StringReaderFromFile {
                 stringFromFile += s;
             }
             br.close();
+            log.info("File is read");
         }
         catch(IOException ex){
 
-            System.out.println(ex);
+            log.error(ex.getMessage());
         }
         return stringFromFile;
     }

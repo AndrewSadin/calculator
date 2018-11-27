@@ -1,12 +1,19 @@
 import java.util.regex.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class Calculate {
+
+    private static final Logger log = LogManager.getRootLogger();
+
     public static void main(String[] args){
         String calcString = getStringFromFile();
-        System.out.println("Start string for calculate " + calcString);
-        calcString.replace( " ", "" );
-        if(checkString(calcString)) {
-            calculate(calcString);
+        if(!calcString.equals("")){
+            log.info("Start string for calculate " + calcString);
+            calcString.replace( " ", "" );
+            if(checkString(calcString)) {
+                calculate(calcString);
+            }
         }
     }
 
@@ -23,11 +30,11 @@ public class Calculate {
             if (m.matches()) {
                 return true;
             } else {
-                System.out.println("First or last symbol is not number");
+                log.warn("First or last symbol is not number");
                 return false;
             }
         } else {
-            System.out.println("No illegal symbol");
+            log.warn("No illegal symbol");
             return false;
         }
     }
@@ -119,7 +126,7 @@ public class Calculate {
         StringWriterToFile fileWriter = new StringWriterToFile();
         fileWriter.writeString(numbers[symbolsLength]);
         } catch (Exception  ex){
-            System.out.println(ex.getMessage());
+            log.warn(ex.getMessage());
         }
     }
 
