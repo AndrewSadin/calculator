@@ -1,10 +1,10 @@
 import java.io.*;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class StringWriterToFile {
 
-    private static final Logger log = LogManager.getRootLogger();
+    private static Logger log = LoggerFactory.getLogger(StringWriterToFile.class);
 
     public void writeString(String stringWrite) {
 

@@ -1,10 +1,10 @@
 import java.io.*;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class StringReaderFromFile {
 
-    private static final Logger log = LogManager.getRootLogger();
+    private static Logger log = LoggerFactory.getLogger(StringReaderFromFile.class);
 
     String getString(){
         String stringFromFile = "";
